@@ -4,23 +4,43 @@
 .menu{
     width: 100%;
     height: 116px;
-    display: inline-block;
     position: fixed;
-}
-.labels{
-    float: right;
-    display: table-cell;
-    vertical-align: bottom;
+    text-align: center;
+    background-color: white;
 }
 .logo{
-    width: 100%;
-    display: table-cell;
-    vertical-align: bottom;
-    height: 116px;
-    padding-left: 30px;
+    width:80%;
+    height: 80px;
+    position: relative;
+    top:33px;
+    margin: 0 auto;
 }
 img.for_def{
-    float: left;
     height: 80px;
     width: auto;
+    float: left;
+}
+.menu_item{
+    float: right;
+    display:flex;
+    position: relative;
+    top:35px;
+}
+.menu .item{
+    padding-left: 20px;
+    padding-right: 20px;
+    text-decoration: none;
+    float: right;
+}
+.item:hover{
+  text-decoration: underline;
+  color: #1999FE;
+}
+.header{
+    width: 100%;
+    height: 375px;
+    background-attachment: fixed;
+    background: url(corelynx_blog_5.jpg);
+    background-position: 50% -202px;
+    background-size: cover;
 }
