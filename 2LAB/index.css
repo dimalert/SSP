@@ -1,3 +1,24 @@
+@font-face {
+font-family: "Akkurat";
+src: url('fonts/regular.woff') format("woff"),
+     url('fonts/regular.svg') format("svg"),
+     url('fonts/regular.eot') format("embedded-opentype")
+}
+
+@font-face {
+font-family: "Akkurat Bold";
+src: url('fonts/bold.woff') format("woff"),
+     url('fonts/bold.svg') format("svg"),
+     url('fonts/bold.eot') format("embedded-opentype")
+}
+
+@font-face {
+font-family: "Akkurat Light";
+src: url('fonts/light.woff') format("woff"),
+     url('fonts/light.svg') format("svg"),
+     url('fonts/light.eot') format("embedded-opentype")
+}
+/* Main font */
 .page{
     width: 100%;
 }
@@ -16,8 +37,8 @@
     margin: 0 auto;
 }
 img.for_def{
-    height: 80px;
-    width: auto;
+    max-height: 80px;
+    max-width: 143px;
     float: left;
 }
 .menu_item{
@@ -31,6 +52,10 @@ img.for_def{
     padding-right: 20px;
     text-decoration: none;
     float: right;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: "Akkurat Light";
+    color:black;
 }
 .item:hover{
   text-decoration: underline;
@@ -43,4 +68,17 @@ img.for_def{
     background: url(corelynx_blog_5.jpg);
     background-position: 50% -202px;
     background-size: cover;
+   display:flex;
+   align-items:flex-end;
 }
+h1 {
+    font-size: 50px!important;
+    color: white;
+    font-family: "Source Sans Pro",sans-serif !important;
+}
+.headerline{
+    width:80%;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
