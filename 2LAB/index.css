@@ -18,9 +18,22 @@ src: url('fonts/light.woff') format("woff"),
      url('fonts/light.svg') format("svg"),
      url('fonts/light.eot') format("embedded-opentype")
 }
+
+@font-face {
+    font-family:'FontAwesome';
+    src: url('fonts/fontawesome-webfont.eot');
+    src:
+        url('fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+        url('fonts/fontawesome-webfont.woff2') format('woff2'),
+        url('fonts/fontawesome-webfont.woff') format('woff'),
+        url('fonts/fontawesome-webfont.ttf') format('truetype'),
+        url('fonts/fontawesome-webfont.svg') format('svg');
+}
+
 /* Main font */
+
 .page{
-    width: 100%;
+width: 100%;
 }
 .menu{
     width: 100%;
@@ -29,16 +42,63 @@ src: url('fonts/light.woff') format("woff"),
     text-align: center;
     background-color: white;
 }
+.social{
+    margin: 0 auto;
+    width:80%;
+    height:36px;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+ .social a{
+     padding-left: 20px;
+     font-size: 13px;
+     padding-right: 20px;
+     font-family: "Akkurat Light",Helvetica,Arial,"Lucida Grande",sans-serif !important;
+    text-decoration: none;
+        color: #000000;
+ }
+ .social a:hover{
+      color: #d10000;
+ }
+ .e-mail a{
+     font-family: "Akkurat Light",Helvetica,Arial,"Lucida Grande",sans-serif !important;
+ }
+ .e-mail a::before{
+     content:"\f0e0";
+     padding-right: 10px;
+     font: normal normal normal 14px/1 FontAwesome;
+ }
+ .RequestDemo{
+         font-family: "Akkurat Light",Helvetica,Arial,"Lucida Grande",sans-serif !important;
+     background: none repeat scroll 0 0 #ffd400;
+    border-radius: 5px;
+    box-shadow: 0 3px 0 #f2b600;
+    color: #3d3d3d;
+    display: inline-block;
+    font-size: 12px;
+    padding: 8px 10px 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 300ms ease 0s, box-shadow 300ms ease 0s;
+    white-space: nowrap;
+    line-height: 0.5;
+    /* margin-left: 55%; */
+    /*height: 65%;*/
+    /* position: absolute; */
+    float: right;
+    cursor: pointer;
+ }
 .logo{
     width:80%;
     height: 80px;
     position: relative;
-    top:33px;
     margin: 0 auto;
 }
 img.for_def{
     max-height: 80px;
-    max-width: 143px;
+     width: 15%;
     float: left;
 }
 .menu_item{
@@ -61,6 +121,11 @@ img.for_def{
   text-decoration: underline;
   color: #1999FE;
 }
+.search::before {
+    content: "\f002";
+    color: red;
+    font: normal normal normal 18px/1 FontAwesome;
+}
 .header{
     width: 100%;
     height: 375px;
@@ -81,4 +146,59 @@ h1 {
     margin: 0 auto;
     padding-bottom: 30px;
 }
-
+.section1{
+    width:100%;
+}
+.sect1header{
+    margin: 70px auto;
+    text-align: center;
+    font-size: 24px;
+    font-family: "Akkurat Light",Helvetica,Arial,"Lucida Grande",sans-serif !important;
+}
+.features{
+    display:flex;
+    justify-content: center;
+}
+.row{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:center;
+}
+.feattxt{
+    line-height: 1.3;
+    margin-left: 25px;
+    margin-right: 25px;
+    text-align: justify;
+    max-width: 350px;
+    font-size: 18px;
+    font-family: "Akkurat Light" !important;
+}
+.row img{
+    margin-bottom: 25px;
+    max-width: 256px;
+}
+@media (max-width: 1048px){
+    .menu_item{
+        visibility: hidden;
+    }
+    .for_def{
+        min-width:10px;
+    }
+}
+@media (max-width: 860px){
+    .e-mail{
+        float:left;
+    }
+    .features{
+        display: block;
+    }
+    .feattxt{
+    max-width: none;
+    }
+    img.for_def{
+     width: 25%;
+     height:auto;
+    float: left;
+}
+}
