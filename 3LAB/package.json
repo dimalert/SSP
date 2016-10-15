@@ -1,0 +1,19 @@
+{
+  "name": "3lab",
+  "version": "1.0.1",
+  "description": "creating library with node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify index.js -o bundle.js"
+  },
+  "author": "kirill tsibikov",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.16.4"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "lodash": "^4.16.4"
+  }
+}
