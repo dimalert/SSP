@@ -118,12 +118,13 @@ function getArrayOfStrings(arr) {
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
 function removeFalsyValues(arr) {
-var a=arr.concat();
-    arr.map(function(num){
-        if(num==false||num== null||num== 0||num== ""||num== undefined||((isNaN(num))&&(typeof num!="string")&&(num!=true))) a.splice(a.indexOf(num),1);
-        return num;
-    });
-    return a;
+// var a=arr.concat();
+//     arr.map(function(num){
+//         if(num==false||num== null||num== 0||num== ""||num== undefined||((isNaN(num))&&(!num))) a.splice(a.indexOf(num),1);
+//         return num;
+//     });
+//     return a;
+    throw new Error('Not implemented');
 }
 
 /**
@@ -137,7 +138,12 @@ var a=arr.concat();
  *    [ 'a', 'b', 'c', 'd', 'e', 'f', 'g' ]  => [ 'A', 'B', 'C', 'D', 'E', 'F', 'G' ]
  */
 function getUpperCaseStrings(arr) {
-   throw new Error('Not implemented');
+  var a=[];
+    arr.map(function(num){
+        a.push(num.toUpperCase()); 
+        return num;
+    });
+    return a;
 }
 
 
@@ -152,7 +158,11 @@ function getUpperCaseStrings(arr) {
  *    [ 'angular', 'react', 'ember' ] => [ 7, 5, 5 ]
  */
 function getStringsLength(arr) {
-   throw new Error('Not implemented');
+   var a=[];
+    a=arr.map(function(num){
+        return num.length;
+    });
+    return a;
 }
 
 /**
@@ -167,7 +177,8 @@ function getStringsLength(arr) {
  *    [ 1, 'b', 'c'], 0, 'x'  => [ 'x', 1, 'b', 'c' ]
  */
 function insertItem(arr, item, index) {
-   throw new Error('Not implemented');
+    arr.splice(-(arr.length-index), 0, item);
+    return arr;
 }
 
 /**
@@ -181,7 +192,8 @@ function insertItem(arr, item, index) {
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'a', 'b', 'c' ]
  */
 function getHead(arr, n) {
-   throw new Error('Not implemented');
+   arr.splice(n,arr.length-n);
+   return arr;
 }
 
 
@@ -196,7 +208,8 @@ function getHead(arr, n) {
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'b', 'c', 'd' ]
  */
 function getTail(arr, n) {
-   throw new Error('Not implemented');
+   arr.splice(0,arr.length-n);
+   return arr;
 }
 
 
