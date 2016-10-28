@@ -22,7 +22,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-    return value1+value2;
+    return value1 + value2;
 }
 
 
@@ -55,7 +55,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-     return "Hello, "+firstName+" "+lastName+"!";
+    return "Hello, " + firstName + " " + lastName + "!";
 }
 
 /**
@@ -69,7 +69,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-     return value.substring(7, value.length-1);
+    return value.substring(7, value.length - 1);
 }
 
 
@@ -84,7 +84,7 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-       return value[0];
+    return value[0];
 }
 
 /**
@@ -114,9 +114,9 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-     var str="";
-    for(var i=0; i<count; i++)
-        str+=value;
+    var str = "";
+    for (var i = 0; i < count; i++)
+        str += value;
     return str;
 }
 
@@ -133,7 +133,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-    str=str.substring(0,str.indexOf(value))+str.substring(str.indexOf(value)+value.length);
+    str = str.substring(0, str.indexOf(value)) + str.substring(str.indexOf(value) + value.length);
     return str;
 }
 
@@ -149,7 +149,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    return str.substring(1, str.length-1);
+    return str.substring(1, str.length - 1);
 }
 
 
@@ -164,7 +164,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-   return str.toUpperCase();
+    return str.toUpperCase();
 }
 
 /**
@@ -205,16 +205,14 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    var str="";
-   for(var i=1; i<=height; i++)
-   {
-       for(var j =0; j<width; j++)
-       {
-           str+=(i==1)?(j==0)?"┌":(j==(width-1))?"┐":"─":(i==height)?(j==0)?"└":(j==(width-1))?"┘":"─":(j==0)?"│":j==(width-1)?"│":" ";
-       }
-       str+="\n";
-   }
-   return str;
+    var str = "";
+    for (var i = 1; i <= height; i++) {
+        for (var j = 0; j < width; j++) {
+            str += (i == 1) ? (j == 0) ? "┌" : (j == (width - 1)) ? "┐" : "─" : (i == height) ? (j == 0) ? "└" : (j == (width - 1)) ? "┘" : "─" : (j == 0) ? "│" : j == (width - 1) ? "│" : " ";
+        }
+        str += "\n";
+    }
+    return str;
 }
 
 
@@ -234,15 +232,14 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    var final="";
-    for(var i=0; i<str.length; i++)
-    {
-        var f="";
-       var a=str.charCodeAt(i);
-       a-=((((a>96)&&(a<123))||((a>64)&&(a<91)))&&((((a+13)>122)&&(a<123))||((a+13)>90)&&(a<91)))?13:(((a>96)&&(a<123))||((a>64)&&(a<91)))?-13:0;
-       final+=String.fromCharCode(a);
+    var final = "";
+    for (var i = 0; i < str.length; i++) {
+        var f = "";
+        var a = str.charCodeAt(i);
+        a -= ((((a > 96) && (a < 123)) || ((a > 64) && (a < 91))) && ((((a + 13) > 122) && (a < 123)) || ((a + 13) > 90) && (a < 91))) ? 13 : (((a > 96) && (a < 123)) || ((a > 64) && (a < 91))) ? -13 : 0;
+        final += String.fromCharCode(a);
     }
-   return final;
+    return final;
 }
 /**
  * Returns true if the value is string; otherwise false.
@@ -258,7 +255,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    return ((typeof value)=="string")?true:((typeof value)=="object")?(value instanceof String)?true:false:false;
+    return ((typeof value) == "string") ? true : ((typeof value) == "object") ? (value instanceof String) ? true : false : false;
 }
 
 /**
@@ -286,20 +283,19 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    switch(value[0])
-    {
+    switch (value[0]) {
         case "A":
-        return (value[1]=="♣")?0:(value[1]=="♦")?13:(value[1]=="♥")?26:(value[1]=="♠")?39:0;
+            return (value[1] == "♣") ? 0 : (value[1] == "♦") ? 13 : (value[1] == "♥") ? 26 : (value[1] == "♠") ? 39 : 0;
         case "J":
-        return (value[1]=="♣")?10:(value[1]=="♦")?23:(value[1]=="♥")?36:(value[1]=="♠")?49:0;
+            return (value[1] == "♣") ? 10 : (value[1] == "♦") ? 23 : (value[1] == "♥") ? 36 : (value[1] == "♠") ? 49 : 0;
         case "Q":
-        return (value[1]=="♣")?11:(value[1]=="♦")?24:(value[1]=="♥")?37:(value[1]=="♠")?50:0;
+            return (value[1] == "♣") ? 11 : (value[1] == "♦") ? 24 : (value[1] == "♥") ? 37 : (value[1] == "♠") ? 50 : 0;
         case "K":
-        return (value[1]=="♣")?12:(value[1]=="♦")?25:(value[1]=="♥")?38:(value[1]=="♠")?51:0;
+            return (value[1] == "♣") ? 12 : (value[1] == "♦") ? 25 : (value[1] == "♥") ? 38 : (value[1] == "♠") ? 51 : 0;
         case "1":
-        return (value[2]=="♣")?9:(value[2]=="♦")?22:(value[2]=="♥")?35:(value[2]=="♠")?48:0;
+            return (value[2] == "♣") ? 9 : (value[2] == "♦") ? 22 : (value[2] == "♥") ? 35 : (value[2] == "♠") ? 48 : 0;
         default:
-        return (value[1]=="♣")?parseInt(value[0])-1:(value[1]=="♦")?13+parseInt(value[0])-1:(value[1]=="♥")?26+parseInt(value[0])-1:(value[1]=="♠")?39+parseInt(value[0])-1:0;
+            return (value[1] == "♣") ? parseInt(value[0]) - 1 : (value[1] == "♦") ? 13 + parseInt(value[0]) - 1 : (value[1] == "♥") ? 26 + parseInt(value[0]) - 1 : (value[1] == "♠") ? 39 + parseInt(value[0]) - 1 : 0;
     }
 }
 
