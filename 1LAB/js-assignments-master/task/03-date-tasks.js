@@ -22,8 +22,8 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-    //return new Date.parse(value);
-    throw new Error('Not implemented');
+    return new Date(value);
+    //throw new Error('Not implemented');
 }
 
 /**
@@ -58,7 +58,7 @@ function parseDataFromIso8601(value) {
  */
 function isLeapYear(date) {
     var d = new Date(date);
-    return ((d.getFullYear() % 4) != 0) ? false : ((d.getFullYear() % 100) != 0) ? true : ((d.getFullYear() % 400) != 0) ? false : true;
+    return d.getFullYear() % 4 === 0 && d.getFullYear() % 10 != 0 || d.getFullYear() % 400 === 0;
 }
 
 

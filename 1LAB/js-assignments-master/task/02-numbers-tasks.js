@@ -22,7 +22,7 @@
  *   5, 5  => 25
  */
 function getRectangleArea(width, height) {
-   return width*height;
+    return width * height;
 }
 
 
@@ -38,7 +38,7 @@ function getRectangleArea(width, height) {
  *   0    => 0
  */
 function getCicleCircumference(radius) {
-    return 2*Math.PI*radius;
+    return 2 * Math.PI * radius;
 }
 
 /**
@@ -54,7 +54,7 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-    return value1/2 + value2/2;
+    return value1 / 2 + value2 / 2;
 }
 
 /**
@@ -73,7 +73,7 @@ function getAverage(value1, value2) {
  *   (-5,0) (10,-10) => 18.027756377319946
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-    return Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+    return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
 /**
@@ -89,7 +89,7 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   5*x = 0         => 0
  */
 function getLinearEquationRoot(a, b) {
-    return (b==0)?0:-b/a;
+    return (b == 0) ? 0 : -b / a;
 }
 
 
@@ -111,7 +111,7 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-    return Math.acos((x1*x2+y1*y2)/(Math.sqrt(x1*x1+y1*y1)*Math.sqrt(x2*x2+y2*y2)));
+    return Math.acos((x1 * x2 + y1 * y2) / (Math.sqrt(x1 * x1 + y1 * y1) * Math.sqrt(x2 * x2 + y2 * y2)));
 }
 
 /**
@@ -127,8 +127,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-    var str=value.toString();
-    return parseInt(str[str.length-1]);
+    return value % 10;
 }
 
 
@@ -144,7 +143,7 @@ function getLastDigit(value) {
  * '-525.5'     => -525.5
  */
 function parseNumberFromString(value) {
-   return (value.search(".")==1)?parseInt(value):parseFloat(value);
+    return + value;
 }
 
 /**
@@ -160,8 +159,8 @@ function parseNumberFromString(value) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelipidedDiagonal(a,b,c) {
-    return Math.sqrt(a*a+b*b+c*c);
+function getParallelipidedDiagonal(a, b, c) {
+    return Math.sqrt(a * a + b * b + c * c);
 }
 
 /**
@@ -182,16 +181,8 @@ function getParallelipidedDiagonal(a,b,c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-    if(pow==0)
-    return num;
-    var str=num.toString();
-    var s="";
-    for(var i=pow; i>0;i--)
-    {
-        s+=str[str.length-i];
-    }
-    var n=parseInt(s);
-    return ((Math.pow(10, pow)-n)<=(Math.pow(10, pow)/2))?num+Math.pow(10, pow)-n:num-n;
+    var base = Math.pow(10, pow);
+    return ((num % base) < (base / 2)) ? num - (num % base) : num + base - (num % base);
 }
 
 /**
@@ -212,13 +203,17 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 function isPrime(n) {
-if (isNaN(n) || !isFinite(n) || n%1 || n<2) return false; 
- if (n%2==0) return (n==2);
- var m=Math.sqrt(n);
- for (var i=3;i<=m;i+=2) {
-  if (n%i==0) return false;
- }
- return true;
+    if (n % 2 === 0) return (n === 2);
+    var m = Math.sqrt(n);
+    var foundPrimes = [2];
+    next: for (var i = 3; i <= m; i += 2) {
+        for(let j = 0; j < foundPrimes.length; j++) {
+            if(i % foundPrimes[j] === 0) break next;
+        }
+        foundPrimes.push(i);
+        if (n % i === 0) return false;
+    }
+    return true;
 }
 
 /**
@@ -237,7 +232,7 @@ if (isNaN(n) || !isFinite(n) || n%1 || n<2) return false;
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-   return (isNaN(parseInt(value)))?def:parseInt(value);
+    return (isNaN(+value)) ? def : +value;
 }
 
 module.exports = {
