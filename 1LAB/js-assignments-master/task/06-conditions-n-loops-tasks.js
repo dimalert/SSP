@@ -256,6 +256,8 @@ function reverseString(str) {
         reverse += str[i];
     }
     return reverse;
+    //или можно в одну строку но без циклов(
+    //return str.split(``).reverse().join(``);
 }
 
 
@@ -278,6 +280,8 @@ function reverseInteger(num) {
         reverse += num[i];
     }
     return +reverse;
+    //или можно в одну строку но без циклов(
+    //return +(num + ``).split(``).reverse().join(``);
 }
 
 
