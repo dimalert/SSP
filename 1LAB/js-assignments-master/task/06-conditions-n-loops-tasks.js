@@ -103,7 +103,10 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a,b,c) {
-    throw new Error('Not implemented');
+    if(a + b <= c) return false;
+    if(a + c <= b) return false;
+    if(c + b <= a) return false;
+    return true;    
 }
 
 
@@ -140,7 +143,15 @@ function isTriangle(a,b,c) {
  *  
  */
 function doRectanglesOverlap(rect1, rect2) {
-    throw new Error('Not implemented');
+    var a = {y: rect1.top,
+             x: rect1.left,
+             y1: rect1.top + rect1.height,
+             x1: rect1.left + rect1.width};
+    var b = {y: rect2.top,
+             x: rect2.left,
+             y1: rect2.top + rect2.height,
+             x1: rect2.left + rect2.width};
+    return !( a.y > b.y1 || a.y1 < b.y || a.x1 < b.x || a.x > b.x1 );
 }
 
 
@@ -171,7 +182,7 @@ function doRectanglesOverlap(rect1, rect2) {
  *   
  */
 function isInsideCircle(circle, point) {
-    throw new Error('Not implemented');
+    return (Math.pow(point.x - circle.center.x, 2) + Math.pow(point.y - circle.center.y, 2)) < Math.pow(circle.radius, 2);  
 }
 
 
@@ -187,7 +198,10 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    throw new Error('Not implemented');
+    for(let i = 0; i < str.length; i++) {
+        if(str.match(new RegExp(`${str[i]}`, `g`)).length === 1) return str[i];
+    }
+    return null;
 }
 
 
@@ -213,7 +227,14 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+    var c = a;
+    if(a > b) {
+        a = b;
+        b = c;
+    }
+    var start = {true: `[`, false: `(`};
+    var end = {true: `]`, false: `)`};
+    return `${start[isStartIncluded]}${a}, ${b}${end[isEndIncluded]}`;
 }
 
 
@@ -230,7 +251,11 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    throw new Error('Not implemented');
+    var reverse = new String();
+    for(let i = str.length - 1; i >= 0; i--) {
+        reverse += str[i];
+    }
+    return reverse;
 }
 
 
@@ -247,7 +272,12 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+    num += "";
+    var reverse = new String();
+    for(let i = num.length - 1; i >= 0; i--) {
+        reverse += num[i];
+    }
+    return +reverse;
 }
 
 
