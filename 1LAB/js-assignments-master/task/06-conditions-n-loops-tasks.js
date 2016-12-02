@@ -30,16 +30,10 @@
  *
  */
 function getFizzBuzz(num) {
-    if( (num % 5 === 0) && (num % 3 === 0))
-    {
-        return 'FizzBuzz';
-    } else if(num % 5 === 0){
-        return 'Buzz';
-    } else if(num % 3 === 0){
-        return 'Fizz';
-    } else{
-        return num;
-    }
+    if( (num % 5 === 0) && (num % 3 === 0)) return 'FizzBuzz';
+    if(num % 5 === 0) return 'Buzz';
+    if(num % 3 === 0) return 'Fizz';
+    return num;
 }
 
 
@@ -55,12 +49,13 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
-    var i;
     var factorial = 1;
-    for(i = 1; i <= n; i++)
+
+    for(let i = 1; i <= n; i++)
     {
         factorial *= i;
     }
+
     return factorial;
 }
 
@@ -80,10 +75,12 @@ function getFactorial(n) {
 function getSumBetweenNumbers(n1, n2) {
     var i;
     var sum = 0;
+
     for(i = n1; i <= n2; i++)
     {
         sum += i;
     }
+
     return sum;
 }
 
@@ -151,6 +148,7 @@ function doRectanglesOverlap(rect1, rect2) {
              x: rect2.left,
              y1: rect2.top + rect2.height,
              x1: rect2.left + rect2.width};
+
     return !( a.y > b.y1 || a.y1 < b.y || a.x1 < b.x || a.x > b.x1 );
 }
 
@@ -201,6 +199,7 @@ function findFirstSingleChar(str) {
     for(let i = 0; i < str.length; i++) {
         if(str.match(new RegExp(`${str[i]}`, `g`)).length === 1) return str[i];
     }
+
     return null;
 }
 
@@ -227,13 +226,15 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+    var start = {true: `[`, false: `(`};
+    var end = {true: `]`, false: `)`};
     var c = a;
+
     if(a > b) {
         a = b;
         b = c;
     }
-    var start = {true: `[`, false: `(`};
-    var end = {true: `]`, false: `)`};
+
     return `${start[isStartIncluded]}${a}, ${b}${end[isEndIncluded]}`;
 }
 
@@ -252,9 +253,11 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  */
 function reverseString(str) {
     var reverse = new String();
+
     for(let i = str.length - 1; i >= 0; i--) {
         reverse += str[i];
     }
+
     return reverse;
     //или можно в одну строку но без циклов(
     //return str.split(``).reverse().join(``);
@@ -276,9 +279,11 @@ function reverseString(str) {
 function reverseInteger(num) {
     num += "";
     var reverse = new String();
+
     for(let i = num.length - 1; i >= 0; i--) {
         reverse += num[i];
     }
+
     return +reverse;
     //или можно в одну строку но без циклов(
     //return +(num + ``).split(``).reverse().join(``);
@@ -306,7 +311,22 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    throw new Error('Not implemented');
+    var arr = (ccn + ``).split(``).map( x => +x);
+
+    if((arr.length % 2) === 0) {
+       var a = arr.reduce((sum, next, i) => {
+            if (i % 2 === 1) return sum + next;
+            return (next * 2) > 9 ? (next * 2) - 9 + sum :  next * 2 + sum;
+        }, 0);
+        return !(a % 10);
+    }
+
+    var b = arr.reduce((sum, next, i) => {
+            if (i % 2 === 0) return sum + next;
+            return (next * 2) > 9 ? (next * 2) - 9 + sum :  next * 2 + sum;
+        }, 0);
+
+    return  !(b % 10);
 }
 
 
@@ -325,7 +345,14 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+    var arr = (num + ``).split(``).map( x => +x);
+    var sum;
+
+    while((sum = arr.reduce((sum, cur) => sum + cur)) > 9) {
+        arr = (sum + ``).split(``).map( x => +x);
+    }
+
+    return sum;
 }
 
 
@@ -351,7 +378,26 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-    throw new Error('Not implemented');
+    if (str === ``) return !0;
+
+    var mas = {']': '[]',
+         ')': '()',
+         '}': '{}',
+         '>': '<>'};
+
+    var stek = [];
+    stek.push(str[0]);
+
+    for(let i = 1; i < str.length; i++) {
+        if(!!mas[str[i]]) {
+            if (mas[str[i]][0] !== stek.pop())
+                return false;
+            continue;
+        }
+        stek.push(str[i]);
+    }
+
+    return stek.length === 0;
 }
 
 
@@ -387,7 +433,30 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-    throw new Error('Not implemented');
+    var diff = endDate - startDate;
+    
+    if (diff <= 45000) return `a few seconds ago`;
+    if (diff <= 90000) return `a minute ago`;
+    if (diff <= 2700000) 
+        return `${diff/60000 - Math.floor(diff/60000) <= 0.5 ? Math.floor(diff/60000) : Math.round(diff/60000)} minutes ago`;
+    if (diff <= 5400000) return `an hour ago`;
+    if (diff <= 79200000) {
+        var eq = diff/(1000*3600);
+        return `${eq - Math.floor(eq) <= 0.5 ? Math.floor(eq) : Math.round(eq)} hours ago`;
+    }
+    if(diff/10000 <= 12960) return `a day ago`;
+    if (diff/1000000 <= 2160) {
+        var eq = diff/(1000*3600*24);
+        return `${eq - Math.floor(eq) <= 0.5 ? Math.floor(eq) : Math.round(eq)} days ago`;
+    }
+    if(diff/100000 <= 38880) return `a month ago`;
+    if (diff/100000 <= 298080) {
+        var eq = diff/(1000*3600*24*30);
+        return `${eq - Math.floor(eq) <= 0.5 ? Math.floor(eq) : Math.round(eq)} months ago`;
+    }
+    if(diff/100000 <= 470880) return `a year ago`;
+    var rq = diff/(1000*3600*24*30*12);
+    return `${rq - Math.floor(rq) <= 0.5 ? Math.floor(rq) : Math.round(rq)} years ago`;
 }
 
 
@@ -411,7 +480,7 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+    return num.toString(n);
 }
 
 
@@ -428,7 +497,18 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-    throw new Error('Not implemented');
+    var path = pathes[0];
+
+    for(let i = 1; i < pathes.length; i++) {
+        for (let j = 0; j < Math.min(path.length, pathes[i].length); j++) {
+            if(path[j] != pathes[i][j]) {
+                path = path.slice(0, j).replace(/[^\/]+$/, "");
+                break;
+            }
+        }
+    }
+
+    return path;    
 }
 
 
