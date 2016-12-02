@@ -379,24 +379,24 @@ function getDigitalRoot(num) {
 function isBracketsBalanced(str) {
     if (str === ``) return !0;
 
-    var mas = {']': '[]',
-         ')': '()',
-         '}': '{}',
-         '>': '<>'};
+    var mas = {']': '[',
+         ')': '(',
+         '}': '{',
+         '>': '<'};
 
-    var stek = [];
-    stek.push(str[0]);
+    var stack = [];
+    stack.push(str[0]);
 
     for(let i = 1; i < str.length; i++) {
         if(!!mas[str[i]]) {
-            if (mas[str[i]][0] !== stek.pop())
+            if (mas[str[i]][0] !== stack.pop())
                 return false;
             continue;
         }
-        stek.push(str[i]);
+        stack.push(str[i]);
     }
 
-    return stek.length === 0;
+    return stack.length === 0;
 }
 
 
