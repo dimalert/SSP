@@ -206,10 +206,15 @@ function isPrime(n) {
     if (n % 2 === 0) return (n === 2);
     var m = Math.sqrt(n);
     var foundPrimes = [2];
-    next: for (var i = 3; i <= m; i += 2) {
+    for (let i = 3; i <= m; i += 2) {
+        let flag = 0;
         for(let j = 0; j < foundPrimes.length; j++) {
-            if(i % foundPrimes[j] === 0) break next;
+            if(i % foundPrimes[j] === 0) {
+                flag = 1;
+                j = foundPrimes.length;
+            }
         }
+        if(flag) continue;
         foundPrimes.push(i);
         if (n % i === 0) return false;
     }
