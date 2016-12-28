@@ -30,7 +30,7 @@
  *
  */
 function getFizzBuzz(num) {
-    if( (num % 5 === 0) && (num % 3 === 0)) return 'FizzBuzz';
+    if( (num % 15 === 0)) return 'FizzBuzz';
     if(num % 5 === 0) return 'Buzz';
     if(num % 3 === 0) return 'Fizz';
     return num;
@@ -530,7 +530,21 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
-    throw new Error('Not implemented');
+    var product = [];
+
+    for(let i = 0; i < m1.length; i++) {
+        var line = [];
+        for(let j = 0; j < m2[0].length; j++) {
+            var sum = 0;
+            for (let k = 0; k < m2.length; k++) {
+                sum += m1[i][k] * m2[k][j];
+            }
+            line.push(sum);
+        }
+        product.push(line);
+    }
+
+    return product;
 }
 
 
@@ -565,7 +579,27 @@ function getMatrixProduct(m1, m2) {
  *
  */
 function evaluateTicTacToePosition(position) {
-    throw new Error('Not implemented');
+    var str = "";
+    for(let i = 0; i < 3; i++)
+        for(let j = 0; j < 3; j++) {
+            if(i === 2 && j === 2 && position[i][j] == undefined) {
+                str += ' ';
+                break;
+            }
+            str += position[i][j] ? position[i][j] + ',' : ' ,';
+        }
+    
+    if((str.search("X,X,X") + 1) % 3 === 1 ) return 'X';
+    if((str.search("0,0,0") + 1) % 3 === 1 ) return '0';
+    if(!~str.search(/^(X,([^,]?,){3}){2}X$/) ||  !~str.search(/^(([^,]?,){2}X){3}(,[^,]?){2}$/))
+        return 'X';
+    if(!~str.search(/^(0,([^,]?,){3}){2}0$/) ||  !~str.search(/^(([^,]?,){2}0){3}(,[^,]?){2}$/))
+        return '0';
+    if(str.search(/(^0(.{5}0){2})|(^.{2}0(.{5}0){2})|(^.{4}0(.{5}0){2})/) === 0) return '0';
+    if(str.search(/(^0(.{5}0){2})|(^.{2}0(.{5}0){2})|(^.{4}0(.{5}0){2})/) === 0) return '0';
+    if(str.search(/(^X(.{5}X){2})|(^.{2}X(.{5}X){2})|(^.{4}X(.{5}X){2})/) === 0) return 'X';
+    return undefined;   
+    //throw new Error('Not implemented');
 }
 
 

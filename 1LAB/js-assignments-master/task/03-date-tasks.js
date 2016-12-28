@@ -23,7 +23,6 @@
  */
 function parseDataFromRfc2822(value) {
     return new Date(value);
-    //throw new Error('Not implemented');
 }
 
 /**
@@ -39,6 +38,7 @@ function parseDataFromRfc2822(value) {
  */
 function parseDataFromIso8601(value) {
     return Date.parse(value);
+    //throw new Error('Not implemented');
 }
 
 
